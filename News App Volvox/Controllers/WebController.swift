@@ -11,9 +11,14 @@ import WebKit
 class WebController: UIViewController, UIWebViewDelegate, WKUIDelegate {
     
     @IBOutlet weak var webView: WKWebView!
-    
+    @IBOutlet weak var activityItem: UIActivityIndicatorView!
     var url = "https://www.google.com"
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        activityItem.startAnimating()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,5 +27,9 @@ class WebController: UIViewController, UIWebViewDelegate, WKUIDelegate {
         webView.load(myRequest)
         webView.uiDelegate = self
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + webView.estimatedProgress + 1) {
+            self.activityItem.isHidden = true
+        }
     }
+   
 }

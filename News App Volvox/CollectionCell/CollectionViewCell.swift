@@ -14,7 +14,6 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsLabel: UILabel!
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
-    
     let device = UIDevice.current.model
     
     override func awakeFromNib() {
@@ -28,6 +27,6 @@ class CollectionViewCell: UICollectionViewCell {
         } else if device == "iPad" {
             imageHeight.constant = 150
         }
-
     }
+    
 }
